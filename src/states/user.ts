@@ -1,4 +1,4 @@
-import {UserType} from "../models/user.d.ts";
+import {UserType} from "../models/user.d"
 
 let currentUser: UserType
 

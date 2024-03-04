@@ -23,6 +23,11 @@ import {Toast} from "vant";
 import {getCurrentUser} from "../services/user";
 
 const router = useRouter();
+const user = ref()
+
+onMounted(async ()=>{
+  user.value = await getCurrentUser()
+})
 
 const toEdit = (editKey: string, editName: string, currentValue: string) => {
   router.push({
@@ -47,11 +52,7 @@ const toEdit = (editKey: string, editName: string, currentValue: string) => {
 //   createTime: new Date(),
 // };
 
-const user = ref({})
 
-onMounted(async ()=>{
-  user.value = await getCurrentUser()
-})
 </script>
 
 <style scoped>
