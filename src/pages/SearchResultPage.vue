@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import {useRoute} from "vue-router";
 import {onMounted, ref} from "vue";
-import myAxios from "../plugins/myAxios.ts";
+import myAxios from "../plugins/myAxios";
 import qs from "qs";
 
 const route = useRoute();
@@ -38,12 +38,9 @@ onMounted ( async ()=>{     //异步调用
     params: {
       tagNameList: tags
     },
-    paramsSerializer: {
-      serialize: function(params){
-        // return qs.stringify(params,{arrayFormat:'repeat'})
-        return qs.stringify(params,{indices: false})
-      }
-    }
+    paramsSerializer: params => {
+      return qs.stringify(params, {indices: false})
+    },
   })
       .then(function (response){
         console.log('/user/search/tags succeed',response);

@@ -1,19 +1,11 @@
 <template>
-  <van-cell title="昵称" is-link to='/user/edit' :value="user.username"/>
-  <van-cell title="账号" is-link to='/user/edit' :value="user.userAccount" />
-  <van-cell title="头像" is-link to='/user/edit'>
-    <img style="height: 48px" :src="user.avatarUrl"/>
-  </van-cell>
-  <van-cell title="性别" is-link to='/user/edit' :value="user.gender"
-            @click="toEdit('gender', user.gender)"/>
-  <van-cell title="电话" is-link to='/user/edit' :value="user.phone"
-            @click="toEdit('phone', user.phone)"/>
-  <van-cell title="邮箱" is-link to='/user/edit' :value="user.email" />
-  <van-cell title="星球编号" :value="user.planetCode" />
-  <van-cell title="注册时间" :value="user.createTime" />
+  <template v-if="user">
+    <van-cell title="当前用户" :value="user?.username" />
+    <van-cell title="修改信息" is-link to="/user/update" />
+    <van-cell title="我创建的队伍" is-link to="/user/team/create" />
+    <van-cell title="我加入的队伍" is-link to="/user/team/join" />
+  </template>
 </template>
-
-
 
 <script setup lang="ts">
 import {useRouter} from "vue-router";
@@ -22,11 +14,24 @@ import myAxios from "../plugins/myAxios";
 import {Toast} from "vant";
 import {getCurrentUser} from "../services/user";
 
-const router = useRouter();
-const user = ref()
+// const user = {
+//   id: 1,
+//   username: '鱼皮',
+//   userAccount: 'dogYupi',
+//   avatarUrl: 'https://636f-codenav-8grj8px727565176-1256524210.tcb.qcloud.la/img/logo.png',
+//   gender: '男',
+//   phone: '123112312',
+//   email: '12345@qq.com',
+//   planetCode: '1234',
+//   createTime: new Date(),
+// }
 
-onMounted(async ()=>{
-  user.value = await getCurrentUser()
+const user = ref();
+
+const router = useRouter();
+
+onMounted(async () => {
+  user.value = await getCurrentUser();
 })
 
 const toEdit = (editKey: string, editName: string, currentValue: string) => {
@@ -39,20 +44,6 @@ const toEdit = (editKey: string, editName: string, currentValue: string) => {
     }
   })
 }
-
-// const user = {
-//   id: 1,
-//   username: '鱼皮',
-//   userAccount: 'dogYupi',
-//   avatarUrl: 'https://img1.baidu.com/it/u=1645832847,2375824523&fm=253&fmt=auto&app=138&f=JPEG?w=480&h=480',
-//   gender: '男',
-//   phone: '121311313',
-//   email: '23432@qq.com',
-//   planetCode: '123',
-//   createTime: new Date(),
-// };
-
-
 </script>
 
 <style scoped>

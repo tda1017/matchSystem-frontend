@@ -4,7 +4,6 @@
       <van-switch v-model="isMatchMode" size="24" />
     </template>
   </van-cell>
-
   <user-card-list :user-list="userList" :loading="loading"/>
   <van-empty v-if="!userList || userList.length < 1" description="数据为空"/>
 </template>
@@ -53,7 +52,8 @@ const loadData = async () => {
     })
         .then(function (response) {
           console.log('/user/recommend succeed', response);
-          return response?.data?.records;
+          return response?.data;
+          // return response?.data?.records;
         })
         .catch(function (error) {
           console.error('/user/recommend error', error);
