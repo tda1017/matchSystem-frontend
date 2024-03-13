@@ -1,11 +1,11 @@
 import myAxios from "../plugins/myAxios";
-import { setCurrentUserState } from "../states/user";
+import {getCurrentUserState, setCurrentUserState} from "../states/user";
 
 export const getCurrentUser = async () => {
-    // const currentUser = getCurrentUserState();
-    // if (currentUser) {
-    //     return currentUser;
-    // }
+    const currentUser = getCurrentUserState();
+    if (currentUser) {
+        return currentUser;
+    }
     // 不存在则从远程获取
     const res = await myAxios.get('/user/current');
     if (res.code === 0) {
