@@ -52,8 +52,9 @@ const loadData = async () => {
     })
         .then(function (response) {
           console.log('/user/recommend succeed', response);
-          return response?.data;
-          // return response?.data?.records;
+          console.log('/user/recommend succeed', response?.data);
+          // return response?.data;
+          return response?.data?.records;
         })
         .catch(function (error) {
           console.error('/user/recommend error', error);
