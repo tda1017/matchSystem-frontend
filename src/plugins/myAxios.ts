@@ -11,10 +11,12 @@ myAxios.defaults.withCredentials = true; // 配置为true
 // Add a request interceptor
 myAxios.interceptors.request.use(function (config) {
     console.log('我要发请求啦', config)
+    console.log('我要发请求啦1111')
     // Do something before request is sent
     return config;
 }, function (error) {
     // Do something with request error
+    console.log('return Promise.reject(error);')
     return Promise.reject(error);
 });
 

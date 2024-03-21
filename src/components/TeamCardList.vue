@@ -27,7 +27,7 @@
         </div>
       </template>
       <template #footer>
-        <van-button size="small" type="primary" v-if="team.userId !== currentUser?.id && !team.hasJoin" plain
+        <van-button size="mini" type="primary" v-if="team.userId !== currentUser?.id && !team.hasJoin" plain
                     @click="preJoinTeam(team)">
           加入队伍
         </van-button>
